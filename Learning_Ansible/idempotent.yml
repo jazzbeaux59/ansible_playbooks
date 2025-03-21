@@ -1,0 +1,7 @@
+---
+- name: testing idempotency
+  hosts: ubuntu
+  gather_facts: false
+  tasks:
+    - name: Use shell command to echo hello to hello.txt
+      ansible.builtin.shell: echo "hello" > /tmp/hello.txt
