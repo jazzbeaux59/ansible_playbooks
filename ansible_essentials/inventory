@@ -1,0 +1,12 @@
+[all_hosts]
+ubuntu-01 ansible_host=192.168.5.30
+rpi-01 ansible_host=192.168.4.88
+
+[ubuntu]
+ubuntu-01
+
+[rpi]
+rpi-01
+
+[all:vars]
+ansible_user=mike
