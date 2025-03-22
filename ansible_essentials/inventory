@@ -8,5 +8,9 @@ ubuntu-01
 [rpi]
 rpi-01
 
+[debian:children]
+ubuntu
+rpi
+
 [all:vars]
 ansible_user=mike
