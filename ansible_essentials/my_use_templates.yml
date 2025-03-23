@@ -1,0 +1,28 @@
+---
+- name:  Make sure the webserver is running and add a clever message
+  # This playbook installs Apache, starts the service, and creates an index.html file using a Jinja2 template.
+  # The index.html file will contain a clever message defined in the variable 'webserver_message'.
+  # The template file 'jinja2.j2' should be created in the same directory as this playbook.
+  # The clever message will be rendered into the index.html file using Jinja2 templating.
+  # The playbook is designed to run on Raspberry Pi (rpi) hosts with elevated privileges (become: yes).
+  # Ensure that the Apache service is enabled to start on boot.
+  # The playbook uses Ansible's built-in modules for package management and service control.
+  hosts: rpi
+  become: yes
+  vars:
+    webserver_message: "This is my clever message"
+
+  tasks:
+    - name: Install Apache web server
+      ansible.builtin.package:
+        name: apache2
+        state: present
+    - name: Start Apache service
+      ansible.builtin.service:
+        name: apache2
+        state: started
+        enabled: true
+    - name: Create index.html using Jinja2
+      template: 
+        src: jinja2.j2
+        dest: /var/www/html/index.html

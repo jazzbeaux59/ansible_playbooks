@@ -1,0 +1,3 @@
+some sample text
+the word file must appear in this file
+it will later be changed

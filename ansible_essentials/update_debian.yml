@@ -1,0 +1,27 @@
+---
+- name: Update debian
+  # This playbook updates the package list and upgrades all installed packages on Debian-based systems.
+  # It is designed to run on hosts with the 'debian' group and requires elevated privileges (become: yes).
+  # The playbook uses Ansible's built-in modules for package management.
+  hosts: debian
+  become: yes
+
+  tasks:
+    - name: Ensure APT is up to date
+      ansible.builtin.apt:
+        update_cache: yes
+      # This task ensures that the APT package cache is updated before proceeding with any installations or upgrades.
+      # The 'update_cache' parameter ensures that the package list is refreshed.
+      # This is important to ensure that the latest package versions are available for installation.
+
+    - name: Update package list
+      ansible.builtin.apt:
+        update_cache: yes
+      # This task updates the APT package list to ensure that the latest package information is available.
+
+    - name: Upgrade all packages
+      ansible.builtin.apt:
+        upgrade: dist
+      # This task upgrades all installed packages to their latest versions.
+      # The 'dist' option allows for a distribution upgrade, which may include new dependencies and removals.
+      # This ensures that the system is kept up to date with the latest security patches and features.
